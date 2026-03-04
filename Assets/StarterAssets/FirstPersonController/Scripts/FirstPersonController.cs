@@ -64,11 +64,16 @@ namespace StarterAssets
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
-	
+		public GameObject GiantSwordMoveable;
+		public GameObject GiantSwordStill;
+
+		bool SwordFrozen = false;
+
 #if ENABLE_INPUT_SYSTEM
-		private PlayerInput _playerInput;
+        private PlayerInput _playerInput;
 #endif
-		private CharacterController _controller;
+		private CharacterController _controller; //really 1 but swapped for a test
+		public CharacterController _controller2;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
 
@@ -108,14 +113,73 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
 		}
 
 		private void Update()
 		{
 			JumpAndGravity();
 			GroundedCheck();
-			Move();
-		}
+			if (_input.turnMode)
+			{
+				float currentRotation = transform.rotation.y;
+				/*if (!SwordFrozen)
+				{
+                    GiantSwordObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+					SwordFrozen = true;
+                }*/
+				/*if ((transform.rotation.y + 90 >= currentRotation + 90) || (transform.rotation.y - 90 >= currentRotation - 90))
+				{
+                    Debug.Log("Cry");
+					Debug.Log(currentRotation);
+                } */
+
+				if (GiantSwordMoveable.activeInHierarchy)
+				{
+					GiantSwordMoveable.SetActive(false);
+                }
+				if (!GiantSwordStill.activeInHierarchy)
+				{
+					GiantSwordStill.SetActive(true);
+					GiantSwordStill.transform.position = GiantSwordMoveable.transform.position;
+                    GiantSwordStill.transform.rotation = GiantSwordMoveable.transform.rotation;
+                }
+
+            }
+			else
+			{
+				/*if (SwordFrozen)
+				{
+                    GiantSwordObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+					GiantSwordObj.GetComponent<Rigidbody>().freezeRotation = true;
+                }*/
+                Move();
+                if (!GiantSwordMoveable.activeInHierarchy)
+                {
+                    GiantSwordMoveable.SetActive(true);
+                }
+                if (GiantSwordStill.activeInHierarchy)
+                {
+                    GiantSwordStill.SetActive(false);
+                }
+            }
+
+
+			
+			
+
+        }
+
+		/*private void TurnHeadState()
+		{
+			if (Input.GetKeyDown(KeyCode.Q))
+			{
+				Debug.Log("turn");
+				
+			}
+
+
+		}*/
 
 		private void LateUpdate()
 		{
@@ -151,7 +215,29 @@ namespace StarterAssets
 			}
 		}
 
-		private void Move()
+        private void LimitedCameraRotation()
+        {
+            // if there is an input
+            if (_input.look.sqrMagnitude >= _threshold)
+            {
+                //Don't multiply mouse input by Time.deltaTime
+                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+
+                _cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
+                _rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
+
+                // clamp our pitch rotation
+                _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+
+                // Update Cinemachine camera target pitch
+                CinemachineCameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
+
+                // rotate the player left and right
+                transform.Rotate(Vector3.up * _rotationVelocity);
+            }
+        }
+
+        private void Move()
 		{
 			// set target speed based on move speed, sprint speed and if sprint is pressed
 			float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -196,7 +282,8 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-		}
+            //_controller2.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+        }
 
 		private void JumpAndGravity()
 		{
