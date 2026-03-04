@@ -2,6 +2,7 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
+using UnityEngine.SceneManagement;
 
 namespace StarterAssets
 {
@@ -52,7 +53,15 @@ namespace StarterAssets
             TurnHeadInput(value.isPressed);
         }
 
-        
+        public void OnQuitGame(InputValue value)
+        {
+            //Debug.Log("OnTurnHead");
+            Debug.Log("quit");
+            SceneManager.LoadScene("SampleScene");
+
+        }
+
+
 #endif
 
 

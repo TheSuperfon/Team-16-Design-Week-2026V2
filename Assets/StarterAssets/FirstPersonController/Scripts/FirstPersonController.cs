@@ -67,7 +67,7 @@ namespace StarterAssets
 		public GameObject GiantSwordMoveable;
 		public GameObject GiantSwordStill;
 
-		bool SwordFrozen = false;
+		//bool SwordFrozen = false;
 
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
