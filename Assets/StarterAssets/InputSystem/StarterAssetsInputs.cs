@@ -12,6 +12,7 @@ namespace StarterAssets
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public bool turnMode;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -24,6 +25,7 @@ namespace StarterAssets
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
+			
 		}
 
 		public void OnLook(InputValue value)
@@ -43,10 +45,18 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+
+        public void OnTurnHead(InputValue value)
+        {
+			//Debug.Log("OnTurnHead");
+            TurnHeadInput(value.isPressed);
+        }
+
+        
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
 		} 
@@ -60,6 +70,12 @@ namespace StarterAssets
 		{
 			jump = newJumpState;
 		}
+
+		public void TurnHeadInput(bool newTurnState)
+		{
+            turnMode = newTurnState;
+            Debug.Log("Cry");
+        }
 
 		public void SprintInput(bool newSprintState)
 		{
