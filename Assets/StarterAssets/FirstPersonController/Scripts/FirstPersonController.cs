@@ -154,6 +154,7 @@ namespace StarterAssets
 					Debug.Log(currentRotation);
                 } */
 
+				/*
 				if (GiantSwordMoveable.activeInHierarchy)
 				{
 					GiantSwordMoveable.SetActive(false);
@@ -164,7 +165,7 @@ namespace StarterAssets
 					GiantSwordStill.transform.position = GiantSwordMoveable.transform.position;
                     GiantSwordStill.transform.rotation = GiantSwordMoveable.transform.rotation;
                 }
-
+				*/
             }
 			else
 			{
@@ -183,9 +184,11 @@ namespace StarterAssets
 
                 Move();
 
+				/*
                 if (!GiantSwordMoveable.activeInHierarchy)
                 {
                     GiantSwordMoveable.SetActive(true);
+
                     GiantSwordMoveable.transform.position = GiantSwordStill.transform.position;
                     GiantSwordMoveable.transform.rotation = GiantSwordStill.transform.rotation;
                     
@@ -194,7 +197,7 @@ namespace StarterAssets
                 {
                     GiantSwordStill.SetActive(false);
                 }
-
+				*/
 
             }
 
