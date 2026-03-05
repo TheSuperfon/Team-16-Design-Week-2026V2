@@ -10,6 +10,7 @@ public class SwordRotation : MonoBehaviour
     [SerializeField] private bool readyToRotate;
     [SerializeField] private float currentTime;
 
+    [SerializeField] public bool rotated;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,6 +47,7 @@ public class SwordRotation : MonoBehaviour
         Debug.Log("rotating");
         sword.transform.Rotate(angle,0,0);
         readyToRotate = false;
+        rotated = !rotated;
     }
 
 }

@@ -19149,7 +19149,37 @@ MonoBehaviour:
   TopClamp: 89
   BottomClamp: -89
   GiantSwordMoveable: {fileID: 2087950662}
-  GiantSwordStill: {fileID: 17575362}
+  OriginalSwordPosition: {x: 0, y: 0, z: 0}
+  originalSwordRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  swordRotation: {fileID: 2087950669}
+  SwordFrozen: 0
+  lastStillPosition: {x: 0, y: 0, z: 0}
+  lastStillRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  PlayerCamerRootOriginalRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  playerCapsuleOriginalRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  playerCameraRoot: {fileID: 584093039}
+  playerCapsule: {fileID: 1795511517}
+  hasGottenLocation: 0
   _controller2: {fileID: 0}
 --- !u!143 &1795511523
 CharacterController:
@@ -22298,6 +22328,7 @@ MonoBehaviour:
   cooldown: 1
   readyToRotate: 0
   currentTime: 0
+  rotated: 0
 --- !u!1001 &2112252611
 PrefabInstance:
   m_ObjectHideFlags: 0

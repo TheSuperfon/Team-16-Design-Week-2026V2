@@ -70,6 +70,8 @@ namespace StarterAssets
         public GameObject GiantSwordMoveable;
 		[SerializeField] private Vector3 OriginalSwordPosition;
 		[SerializeField] private quaternion originalSwordRotation;
+		[SerializeField] private SwordRotation swordRotation;
+
 
         [Header("Free look camera")]
         [SerializeField] bool SwordFrozen = false;
@@ -222,7 +224,14 @@ namespace StarterAssets
 
 
             var rot = gameObject.transform.localRotation.eulerAngles; //get the angles
-            rot.Set(0f, 270, 0f); //set the angles
+			if(!swordRotation.rotated)
+			{
+                rot.Set(0f, 270, 0f); //set the angles
+            }
+           else if(swordRotation.rotated)
+			{
+                rot.Set(90f, 360, 90f); //set the angles
+            }
            
 
             GiantSwordMoveable.transform.position = OriginalSwordPosition;
