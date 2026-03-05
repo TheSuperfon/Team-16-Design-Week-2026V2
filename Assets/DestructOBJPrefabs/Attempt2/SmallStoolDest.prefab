@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 946437140620725968}
   - component: {fileID: 4633343880559091224}
   - component: {fileID: 7247651059858382769}
-  - component: {fileID: 1815232705725307175}
   - component: {fileID: 223658306696291790}
   m_Layer: 0
   m_Name: stall-stool
@@ -286,28 +285,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1815232705725307175
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6559326353989741825}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6532745816506635441, guid: 3895c5124dd02ef4287a70d06ac86d52, type: 3}
 --- !u!114 &223658306696291790
 MonoBehaviour:
   m_ObjectHideFlags: 0

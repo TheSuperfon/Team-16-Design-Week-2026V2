@@ -7,7 +7,9 @@ public class OBJDestructTest1 : MonoBehaviour
     bool isBottle;
     bool isBroken;
     bool isWallMounted;
+    //bool isTable;
     AudioSource audiosource;
+    GameObject DebtOBJ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,7 +22,21 @@ public class OBJDestructTest1 : MonoBehaviour
         {
             isBottle = true;
         }
+        else
+        {
+            isBottle = false;
+        }
 
+        DebtOBJ = FindFirstObjectByType<TempDebtTracker>().gameObject;
+
+        /*if ((this.gameObject.transform.GetChild(0).gameObject.name == "TableDest"))
+        {
+            isTable = true;
+        }
+        else
+        {
+            isTable = false;
+        }*/
 
         if ((this.gameObject.transform.GetChild(0).gameObject.name == "banner-red"))
         {
@@ -40,7 +56,7 @@ public class OBJDestructTest1 : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
+        //Debug.Log(collision.gameObject.name);
 
         if (!isBroken)
         {
@@ -52,10 +68,20 @@ public class OBJDestructTest1 : MonoBehaviour
                 collision.gameObject.GetComponent<AudioAttempt>().playsound();
                 audiosource.Play();
                 isBroken = true;
+                DebtOBJ.GetComponent<TempDebtTracker>().IncreaseDebt();
                 if (isWallMounted)
                 {
                     this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 }
+                /*if (isTable)
+                {
+                    foreach (Collider c in GetComponents<Collider>())
+                    {
+                        c.enabled = false;
+                    }
+                    //BoxCollider collider = this.gameObject.GetComponent<BoxCollider>();
+                    //collider.enabled = false;
+                }*/
             }
 
             
@@ -68,6 +94,7 @@ public class OBJDestructTest1 : MonoBehaviour
                     BrokenObj.SetActive(true);
                     audiosource.Play();
                     isBroken = true;
+                    DebtOBJ.GetComponent<TempDebtTracker>().IncreaseDebt();
                 }
             }
         }
