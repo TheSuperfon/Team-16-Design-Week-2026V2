@@ -95,6 +95,7 @@ namespace StarterAssets
 		public void TurnHeadInput(bool newTurnState)
 		{
             turnMode = newTurnState;
+
             Debug.Log("Cry");
         }
 

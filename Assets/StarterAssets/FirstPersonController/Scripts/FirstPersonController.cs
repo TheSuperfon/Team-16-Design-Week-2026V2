@@ -55,20 +55,34 @@ namespace StarterAssets
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
-		// player
-		private float _speed;
+        [Header("Player")]
+        private float _speed;
 		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
 
-		// timeout deltatime
-		private float _jumpTimeoutDelta;
+        [Header("Timer")]
+        private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
-		public GameObject GiantSwordMoveable;
-		public GameObject GiantSwordStill;
 
-		//bool SwordFrozen = false;
+        [Header("Sword")]
+        public GameObject GiantSwordMoveable;
+		[SerializeField] private Vector3 OriginalSwordPosition;
+		[SerializeField] private quaternion originalSwordRotation;
+
+        [Header("Free look camera")]
+        [SerializeField] bool SwordFrozen = false;
+		[SerializeField] private Vector3 lastStillPosition;
+        [SerializeField] private quaternion lastStillRotation;
+
+        [SerializeField] private quaternion PlayerCamerRootOriginalRotation;
+		[SerializeField] private quaternion playerCapsuleOriginalRotation;
+
+        [SerializeField] private Transform playerCameraRoot;
+        [SerializeField] private Transform playerCapsule;
+
+        [SerializeField] private bool hasGottenLocation;
 
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
@@ -115,109 +129,108 @@ namespace StarterAssets
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 
+
+			originalSwordRotation = GiantSwordMoveable.transform.rotation;
+			OriginalSwordPosition = GiantSwordMoveable.transform.position;
+
 		}
 
 		//bool SwordWeilding = true;
 		//Transform RotatedRotation = (2, 2, 2);
-		//Quaternion currentRotation;
+		Quaternion currentRotation;
 		bool rotatingComplete = false;
 		private void Update()
 		{
-			/*
+			
 			if (_input.isRotated)
 			{
 				GiantSwordMoveable.transform.rotation *= Quaternion.Euler(85f, 85f, 85f);
 
 
-                /*if (GiantSwordMoveable.transform.rotation == Quaternion.Euler(175f, 90f, 0.0f))
-				{
-
-				}
-
 				_input.isRotated = false;
             }
-			*/
+			
+			if(Input.GetKeyUp(KeyCode.Q)) 
+			{
+				resetCameraLookUp();
+			}
 
 			JumpAndGravity();
 			GroundedCheck();
 			if (_input.turnMode)
 			{
-				//SwordWeilding = false;
-				//float currentRotation = transform.rotation.y;
-				/*if (!SwordFrozen)
-				{
-                    GiantSwordObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-					SwordFrozen = true;
-                }*/
-				/*if ((transform.rotation.y + 90 >= currentRotation + 90) || (transform.rotation.y - 90 >= currentRotation - 90))
-				{
-                    Debug.Log("Cry");
-					Debug.Log(currentRotation);
-                } */
+				float currentRotation = transform.rotation.y;
 
-				/*
-				if (GiantSwordMoveable.activeInHierarchy)
-				{
-					GiantSwordMoveable.SetActive(false);
-                }
-				if (!GiantSwordStill.activeInHierarchy)
-				{
-					GiantSwordStill.SetActive(true);
-					GiantSwordStill.transform.position = GiantSwordMoveable.transform.position;
-                    GiantSwordStill.transform.rotation = GiantSwordMoveable.transform.rotation;
-                }
-				*/
+
+				getSwordLastLocation();
+
+                freeLookCam();
             }
 			else
 			{
-				/*if (SwordFrozen)
-				{
-                    GiantSwordObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-					GiantSwordObj.GetComponent<Rigidbody>().freezeRotation = true;
-                }*/
-				/*if (!SwordWeilding)
-				{
-
-
-
-					SwordWeilding = true;
-				}*/
+				hasGottenLocation = false;
 
                 Move();
 
-				/*
-                if (!GiantSwordMoveable.activeInHierarchy)
-                {
-                    GiantSwordMoveable.SetActive(true);
-
-                    GiantSwordMoveable.transform.position = GiantSwordStill.transform.position;
-                    GiantSwordMoveable.transform.rotation = GiantSwordStill.transform.rotation;
-                    
-                }
-                if (GiantSwordStill.activeInHierarchy)
-                {
-                    GiantSwordStill.SetActive(false);
-                }
-				*/
-
-            }
-
-
-			
-			
-
+}
         }
 
-		/*private void TurnHeadState()
+
+
+
+		//BRUNO'S WORK START HERE
+		
+		private void getSwordLastLocation()
 		{
-			if (Input.GetKeyDown(KeyCode.Q))
+			if(!hasGottenLocation)
 			{
-				Debug.Log("turn");
-				
-			}
+				//freeze where the sword was originally
+                lastStillPosition = GiantSwordMoveable.transform.position;
+				lastStillRotation = GiantSwordMoveable.transform.rotation;
+
+                //get original player rotation before freezing sword
+                PlayerCamerRootOriginalRotation = playerCameraRoot.rotation;
+                playerCapsuleOriginalRotation = playerCapsule.rotation;
 
 
-		}*/
+                hasGottenLocation = true;
+            }
+		}
+
+
+
+
+		private void freeLookCam()
+		{
+			//set the location of the sword to where it was last to freeze it 
+			GiantSwordMoveable.transform.position = lastStillPosition;
+            GiantSwordMoveable.transform.rotation = lastStillRotation;
+
+
+
+            Debug.Log("frozen");
+		}
+
+		private void resetCameraLookUp()
+		{
+			playerCameraRoot.rotation = playerCameraRoot.rotation; 
+			playerCapsule.rotation = playerCapsuleOriginalRotation;
+
+			
+	
+
+
+
+            var rot = gameObject.transform.localRotation.eulerAngles; //get the angles
+            rot.Set(0f, 270, 0f); //set the angles
+           
+
+            GiantSwordMoveable.transform.position = OriginalSwordPosition;
+            GiantSwordMoveable.transform.localRotation = Quaternion.Euler(rot);
+
+        }
+		
+
 
 		private void LateUpdate()
 		{
