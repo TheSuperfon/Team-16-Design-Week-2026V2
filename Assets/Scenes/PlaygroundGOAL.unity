@@ -10169,7 +10169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &930260876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10716,7 +10716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1005717713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19619,7 +19619,37 @@ MonoBehaviour:
   TopClamp: 89
   BottomClamp: -89
   GiantSwordMoveable: {fileID: 2087950662}
-  GiantSwordStill: {fileID: 17575362}
+  OriginalSwordPosition: {x: 0, y: 0, z: 0}
+  originalSwordRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  swordRotation: {fileID: 2087950670}
+  SwordFrozen: 0
+  lastStillPosition: {x: 0, y: 0, z: 0}
+  lastStillRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  PlayerCamerRootOriginalRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  playerCapsuleOriginalRotation:
+    value:
+      x: 0
+      y: 0
+      z: 0
+      w: 0
+  playerCameraRoot: {fileID: 584093039}
+  playerCapsule: {fileID: 1795511517}
+  hasGottenLocation: 0
   _controller2: {fileID: 0}
 --- !u!143 &1795511523
 CharacterController:
@@ -22686,6 +22716,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe94a82278483e46858385b37bbd036, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2087950669}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe94a82278483e46858385b37bbd036, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2087950670}
     - targetCorrespondingSourceObject: {fileID: -6794778163019109856, guid: abe94a82278483e46858385b37bbd036, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2087950663}
@@ -23000,6 +23033,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordWallTest
   SlashMetal: {fileID: 930260875}
+--- !u!114 &2087950670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087950662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9661133c9af1e4888b78f979fb252e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SwordRotation
+  sword: {fileID: 2087950662}
+  angle: 90
+  cooldown: 1
+  readyToRotate: 0
+  currentTime: 0
+  rotated: 0
 --- !u!1001 &2112252611
 PrefabInstance:
   m_ObjectHideFlags: 0
