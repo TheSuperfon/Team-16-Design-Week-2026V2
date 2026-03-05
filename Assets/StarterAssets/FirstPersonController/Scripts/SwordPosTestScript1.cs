@@ -13,7 +13,7 @@ public class SwordPosTestScript1 : MonoBehaviour
     void FixedUpdate()
     {
         gameObject.transform.position = EmptySword.transform.position;
-        gameObject.transform.rotation = EmptySword.transform.rotation;
+        //gameObject.transform.rotation = EmptySword.transform.rotation;
     }
 
 

@@ -62,6 +62,7 @@ namespace StarterAssets
 
         }
 
+		/*
         public void OnTurnSword(InputValue value)
         {
             //Debug.Log("OnTurnHead");
@@ -72,7 +73,7 @@ namespace StarterAssets
 
         }
 
-
+		*/
 #endif
 
 

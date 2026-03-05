@@ -119,10 +119,11 @@ namespace StarterAssets
 
 		//bool SwordWeilding = true;
 		//Transform RotatedRotation = (2, 2, 2);
-		Quaternion currentRotation;
+		//Quaternion currentRotation;
 		bool rotatingComplete = false;
 		private void Update()
 		{
+			/*
 			if (_input.isRotated)
 			{
 				GiantSwordMoveable.transform.rotation *= Quaternion.Euler(85f, 85f, 85f);
@@ -131,18 +132,18 @@ namespace StarterAssets
                 /*if (GiantSwordMoveable.transform.rotation == Quaternion.Euler(175f, 90f, 0.0f))
 				{
 
-				}*/
+				}
 
 				_input.isRotated = false;
             }
-
+			*/
 
 			JumpAndGravity();
 			GroundedCheck();
 			if (_input.turnMode)
 			{
 				//SwordWeilding = false;
-				float currentRotation = transform.rotation.y;
+				//float currentRotation = transform.rotation.y;
 				/*if (!SwordFrozen)
 				{
                     GiantSwordObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
