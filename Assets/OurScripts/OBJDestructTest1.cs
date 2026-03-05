@@ -6,6 +6,7 @@ public class OBJDestructTest1 : MonoBehaviour
     GameObject BrokenObj;
     bool isBottle;
     bool isBroken;
+    bool isWallMounted;
     AudioSource audiosource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,9 +16,19 @@ public class OBJDestructTest1 : MonoBehaviour
         BrokenObj = this.gameObject.transform.GetChild(1).gameObject;
         NotBrokenObj.SetActive(true);
         BrokenObj.SetActive(false);
-        if (this.gameObject.transform.GetChild(0).gameObject.name == "bottleFull")
+        if ((this.gameObject.transform.GetChild(0).gameObject.name == "bottleFull") || (this.gameObject.transform.GetChild(0).gameObject.name == "fish-large"))
         {
             isBottle = true;
+        }
+
+
+        if ((this.gameObject.transform.GetChild(0).gameObject.name == "banner-red"))
+        {
+            isWallMounted = true;
+        }
+        else
+        {
+            isWallMounted= false;
         }
     }
 
@@ -41,9 +52,13 @@ public class OBJDestructTest1 : MonoBehaviour
                 collision.gameObject.GetComponent<AudioAttempt>().playsound();
                 audiosource.Play();
                 isBroken = true;
+                if (isWallMounted)
+                {
+                    this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                }
             }
 
-
+            
 
             if (isBottle)
             {
