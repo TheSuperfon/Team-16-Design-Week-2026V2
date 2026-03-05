@@ -6,6 +6,7 @@ public class SwordWallTest : MonoBehaviour
     //instantiate
     public GameObject SlashMetal;
     float isSlashed;
+    public AudioSource SlashSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,15 +23,15 @@ public class SwordWallTest : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 50))
-        {
+        //RaycastHit hit;
+        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 50))
+        //{
             //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             //Debug.Log("why");
             
 
 
-        }
+        //}
 
         //MyCollisions();
     }
@@ -70,7 +71,7 @@ public class SwordWallTest : MonoBehaviour
                 {
                     Instantiate(SlashMetal, collisionPoint + new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)); //make rotate 90 degrees via x for ground
                 }
-                
+                SlashSound.Play();
                 isSlashed = 1;
 
             }
@@ -101,7 +102,7 @@ public class SwordWallTest : MonoBehaviour
                 Debug.Log(collisionPoint.ToString());
                 Instantiate(SlashMetal, collisionPoint + new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)); //make rotate 90 degrees via x for ground
                 isSlashed = 1;
-
+                SlashSound.Play();
             }
             if (isSlashed == 1)
             {

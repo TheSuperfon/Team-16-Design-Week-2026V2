@@ -10169,7 +10169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &930260876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10207,7 +10207,7 @@ Transform:
   m_GameObject: {fileID: 930260875}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.29, y: 0.959, z: 2.78}
+  m_LocalPosition: {x: -1.97, y: -1.47, z: 3.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10716,7 +10716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1005717713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10754,7 +10754,7 @@ Transform:
   m_GameObject: {fileID: 1005717712}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 2.667031, y: 0.623, z: 6.333}
+  m_LocalPosition: {x: 0.987031, y: -1.806, z: 6.613}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12598,6 +12598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordWallTest
   SlashMetal: {fileID: 1005717712}
+  SlashSound: {fileID: 2087950665}
 --- !u!136 &1159837983
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22715,9 +22716,6 @@ PrefabInstance:
       addedObject: {fileID: 2087950664}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe94a82278483e46858385b37bbd036, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2087950669}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: abe94a82278483e46858385b37bbd036, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2087950670}
     - targetCorrespondingSourceObject: {fileID: -6794778163019109856, guid: abe94a82278483e46858385b37bbd036, type: 3}
       insertIndex: -1
@@ -23020,19 +23018,6 @@ CapsuleCollider:
   m_Height: 3.58
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2087950669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087950662}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d35edd68d0736104b985a9fb7194a91f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SwordWallTest
-  SlashMetal: {fileID: 930260875}
 --- !u!114 &2087950670
 MonoBehaviour:
   m_ObjectHideFlags: 0
