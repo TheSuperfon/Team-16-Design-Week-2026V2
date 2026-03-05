@@ -55,10 +55,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.655, y: 0.0717, z: 1}
-  m_Center: {x: -0.0009, y: 0.329, z: 0}
+  m_Center: {x: 0, y: 0.329, z: 0}
 --- !u!65 &3246032264741530338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76,10 +76,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.5069839, y: 0.28186077, z: 1}
-  m_Center: {x: -0.000196, y: 0.155, z: 0}
+  m_Size: {x: 0.51, y: 0.28, z: 1}
+  m_Center: {x: 0, y: 0.155, z: 0}
 --- !u!54 &4237075197437721419
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -227,6 +227,8 @@ GameObject:
   - component: {fileID: 8461588007575374774}
   - component: {fileID: 167902284039985261}
   - component: {fileID: 4904856051594108504}
+  - component: {fileID: 1753966356687929168}
+  - component: {fileID: 5326627967937544088}
   m_Layer: 0
   m_Name: stall
   m_TagString: Untagged
@@ -306,6 +308,48 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1753966356687929168
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586900391941906212}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.51, y: 0.28, z: 1}
+  m_Center: {x: 0, y: 0.155, z: 0}
+--- !u!65 &5326627967937544088
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8586900391941906212}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.655, y: 0.07, z: 1}
+  m_Center: {x: 0, y: 0.329, z: 0}
 --- !u!1001 &9205027490210787829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -407,7 +451,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.6341428, y: 0.36993638, z: 0.4634168}
   m_Center: {x: -0.00648099, y: 0.17957138, z: 0.3709532}
@@ -428,7 +472,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.6050866, y: 0.3373042, z: 0.58424497}
   m_Center: {x: -0.024506036, y: 0.1880138, z: -0.6276132}
