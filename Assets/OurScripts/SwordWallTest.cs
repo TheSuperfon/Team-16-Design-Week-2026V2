@@ -1,14 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 public class SwordWallTest : MonoBehaviour
 {
     //instantiate
     public GameObject SlashMetal;
+    float isSlashed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        isSlashed = 0; //not slashed
     }
 
     // Update is called once per frame
@@ -30,35 +32,11 @@ public class SwordWallTest : MonoBehaviour
 
         }
 
-        MyCollisions();
+        //MyCollisions();
     }
 
 
-    void MyCollisions()
-    {
-        // Use the OverlapBox to detect if there are any other colliders within this box area.
-        // Use the GameObject's center, half the size (as a radius), and rotation. This creates an invisible box around your GameObject.
-        Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 4, gameObject.transform.rotation);
-        int i = 0;
-        // Check when there is a new collider coming into contact with the box
-        while (i < hitColliders.Length)
-        {
-            // Output all of the collider names
-            Debug.Log("Hit : " + hitColliders[i].name + i);
-            // Increase the number of Colliders in the array
-            i++;
-        }
-    }
-
-    // Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this.
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        // Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        if (Application.isPlaying)
-            // Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawWireCube(transform.position, transform.localScale);
-    }
+    
 
 
     public void InstantMetal()
@@ -68,16 +46,78 @@ public class SwordWallTest : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(collision.contacts[0].point);
+        //if thing is rotated 90 degrees y
+        if (isSlashed == 0)
+        {
+            if (other.GetComponent<MeshCollider>() != null)
+            {
+                /*Debug.Log(other.gameObject.GetComponent<Collision>().contacts[0].point);
+                Vector3 DecalPos = other.gameObject.GetComponent<Collision>().contacts[0].point;
+
+                Instantiate(SlashMetal, DecalPos, Quaternion.identity);*/
+                Vector3 collisionPoint = other.ClosestPoint(transform.position);
+                //Debug.Log(collisionPoint.ToString());
+                if (other.transform.rotation.y == 90) // wall
+                {
+                    Instantiate(SlashMetal, collisionPoint + new Vector3(0, 0, 0), Quaternion.identity); //make rotate 90 degrees via x for ground
+                }
+                else
+                {
+                    Instantiate(SlashMetal, collisionPoint + new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)); //make rotate 90 degrees via x for ground
+                }
+                
+                isSlashed = 1;
+
+            }
 
 
+        }
+        if (isSlashed == 1)
+        {
+            isSlashed = 2;
+            StartCoroutine(timeTillNextSlash());
+
+        }
+
+        
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log("stay");
+        if (isSlashed == 0)
+        {
+            if (other.GetComponent<MeshCollider>() != null)
+            {
+                /*Debug.Log(other.gameObject.GetComponent<Collision>().contacts[0].point);
+                Vector3 DecalPos = other.gameObject.GetComponent<Collision>().contacts[0].point;
+
+                Instantiate(SlashMetal, DecalPos, Quaternion.identity);*/
+                Vector3 collisionPoint = other.ClosestPoint(transform.position);
+                Debug.Log(collisionPoint.ToString());
+                Instantiate(SlashMetal, collisionPoint + new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0)); //make rotate 90 degrees via x for ground
+                isSlashed = 1;
+
+            }
+            if (isSlashed == 1)
+            {
+                isSlashed = 2;
+                StartCoroutine(timeTillNextSlash());
+
+            }
+
+        }
+    }
+
+
+    public IEnumerator timeTillNextSlash()
+    {
+        yield return new WaitForSeconds(2);
+        isSlashed = 0;
     }
 
 }
