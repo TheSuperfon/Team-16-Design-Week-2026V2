@@ -1315,7 +1315,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1030762465}
         m_TargetAssemblyTypeName: LevelSelect, Assembly-CSharp
-        m_MethodName: LoadTown
+        m_MethodName: QuitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
