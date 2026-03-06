@@ -9,10 +9,10 @@ public class TempDebtTracker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        debtNum = 0;
+        debtNum = 1000;
         DebtText = GetComponent<TextMeshProUGUI>();
         DebtText.text = debtNum.ToString();
-        DebtText.color = Color.white;
+        DebtText.color = Color.green;
     }
 
     // Update is called once per frame
@@ -23,10 +23,19 @@ public class TempDebtTracker : MonoBehaviour
 
     public void IncreaseDebt()
     {
-        debtNum += 10;
-        if (debtNum >= 100)
+        debtNum -= 10;
+        if (debtNum <= 700)
         {
-            DebtText.color = Color.red;
+            if (debtNum <= 300)
+            {
+                DebtText.color = Color.red;
+            }
+            else
+            {
+                DebtText.color = Color.yellow;
+            }
+
+
         }
         DebtText.text = debtNum.ToString();
     }

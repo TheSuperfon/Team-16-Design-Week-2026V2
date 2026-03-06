@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelect
   tavernName: PlaygroundGOAL
-  townName: AritAndSeifLevelLayoutPrototype
+  townName: TownLevelLayout
   ResetToTitle: 
 --- !u!1 &1673415646
 GameObject:
