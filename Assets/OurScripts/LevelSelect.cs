@@ -39,6 +39,14 @@ public class LevelSelect : MonoBehaviour
 
     }
 
+    public void QuitButton()
+    {
+        Application.Quit();
+
+
+
+    }
+
     public void LoadTown()
     {
         Cursor.lockState = CursorLockMode.Locked;
